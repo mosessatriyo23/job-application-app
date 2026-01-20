@@ -2,14 +2,12 @@ package model
 
 import (
 	"time"
-
-	"github.com/google/uuid"
 )
 
 type Application struct {
-	ID           uuid.UUID `json:"id" gorm:"type:uuid;default:gen_random_uuid();primaryKey"`
-	JobID        uuid.UUID `json:"job_id" gorm:"type:uuid;not null"`
-	UserID       uuid.UUID `json:"user_id" gorm:"type:uuid;not null"`
+	ID           int       `json:"id" gorm:"primaryKey"`
+	JobID        int       `json:"job_id"`
+	UserID       int       `json:"user_id"`
 	FullName     string    `json:"full_name"`
 	BirthDate    time.Time `json:"birth_date"`
 	Address      string    `json:"address"`
@@ -20,6 +18,6 @@ type Application struct {
 	Status       string    `json:"status"`
 	AppliedAt    time.Time `json:"applied_at"`
 
-	Job  *Job  `json:"job,omitempty" gorm:"foreignKey:JobID"`
-	User *User `json:"user,omitempty" gorm:"foreignKey:UserID"`
+	Job  *Job  `json:"job,omitempty"`
+	User *User `json:"user,omitempty"`
 }
