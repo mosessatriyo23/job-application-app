@@ -1,15 +1,10 @@
 package main
 
 import (
-    "fmt"
-    "net/http"
+	"job-application-app/backend/internal/config"
 )
 
 func main() {
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintln(w, "Job Application API is running")
-    })
-
-    fmt.Println("Server running at :8080")
-    http.ListenAndServe(":8080", nil)
+	cfg := config.LoadConfig()
+	config.ConnectDatabase(cfg)
 }
