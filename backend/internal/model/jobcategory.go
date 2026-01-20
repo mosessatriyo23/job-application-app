@@ -1,6 +1,8 @@
 package model
 
+import "github.com/google/uuid"
+
 type JobCategory struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID   uuid.UUID `json:"id" gorm:"type:uuid;default:gen_random_uuid();primaryKey"`
+	Name string    `json:"name"`
 }

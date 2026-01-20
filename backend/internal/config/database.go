@@ -12,7 +12,7 @@ var DB *gorm.DB
 func ConnectDatabase(cfg *Config) {
 	db, err := gorm.Open(postgres.Open(cfg.DatabaseURL), &gorm.Config{})
 	if err != nil {
-		log.Fatal("failed to connect database")
+		log.Fatal("failed to connect database:", err)
 	}
 
 	DB = db

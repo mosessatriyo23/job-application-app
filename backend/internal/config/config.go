@@ -12,14 +12,11 @@ type Config struct {
 }
 
 func LoadConfig() *Config {
-	err := godotenv.Load()
-	if err != nil {
-		log.Println("No .env file found")
-	}
+	_ = godotenv.Load()
 
 	dbURL := os.Getenv("DATABASE_URL")
 	if dbURL == "" {
-		log.Fatal("DATABASE_URL not set")
+		log.Fatal("DATABASE_URL is not set")
 	}
 
 	return &Config{
